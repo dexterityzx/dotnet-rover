@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.852
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotnet-rover", "dotnet-rover\dotnet-rover.csproj", "{83608863-4FF3-4239-83E1-2B7D0F2BD618}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test-rover", "test-rover\test-rover.csproj", "{CAED3822-8D8E-4D49-9AC0-A6AEB4904271}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{83608863-4FF3-4239-83E1-2B7D0F2BD618}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83608863-4FF3-4239-83E1-2B7D0F2BD618}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83608863-4FF3-4239-83E1-2B7D0F2BD618}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAED3822-8D8E-4D49-9AC0-A6AEB4904271}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAED3822-8D8E-4D49-9AC0-A6AEB4904271}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAED3822-8D8E-4D49-9AC0-A6AEB4904271}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAED3822-8D8E-4D49-9AC0-A6AEB4904271}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
