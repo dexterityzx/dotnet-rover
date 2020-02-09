@@ -22,7 +22,7 @@ namespace Rover
 
             if (currentState == null) return false;
 
-            var nextState = RoverState.Clone(currentState);
+            var nextState = (RoverState)currentState.Clone();
 
             switch (currentState.direction)
             {
