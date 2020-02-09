@@ -1,25 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Rover.Abstract;
 
 namespace Rover
 {
-    public class Rover
+    public class Rover : AbstractRover<RoverState>
     {
-        public enum Turns
+        public Rover(Map map, RoverState state = null) : base(map, state)
         {
-            Left,
-            Right
-        }
-
-        private Map _map;
-        private Stack<RoverState> _states;
-        private Stack<string> _errors;
-
-        public Rover(Map map, RoverState state = null)
-        {
-            _map = map;
-            _states = new Stack<RoverState>();
-            _errors = new Stack<string>();
-
             if (IsValidState(state))
             {
                 _states.Push(RoverState.Clone(state));
@@ -30,7 +16,7 @@ namespace Rover
             }
         }
 
-        public bool MoveForward()
+        public override bool MoveForward()
         {
             RoverState currentState = GetCurrentState();
 
@@ -66,7 +52,7 @@ namespace Rover
             return true;
         }
 
-        public bool Turn(Turns turn)
+        public override bool Turn(Turns turn)
         {
             RoverState currentState = GetCurrentState();
 
@@ -98,21 +84,7 @@ namespace Rover
             return true;
         }
 
-        public RoverState GetCurrentState()
-        {
-            RoverState currentState = null;
-            _states.TryPeek(out currentState);
-            return currentState;
-        }
-
-        public string GetLastError()
-        {
-            string error = null;
-            _errors.TryPeek(out error);
-            return error;
-        }
-
-        private bool IsValidState(RoverState state)
+        protected override bool IsValidState(RoverState state)
         {
             if (state == null) return false;
             if (_map.IsInBoundary(state.x, state.y) == false)

@@ -1,6 +1,8 @@
-﻿namespace Rover
+﻿using Rover.Interface;
+
+namespace Rover
 {
-    public class RoverState
+    public class RoverState : IRoverState
     {
         public Directions direction;
         public int x;
@@ -30,12 +32,19 @@
             return $"{x} {y} {DirectionEnumHelper.ToString(direction)}";
         }
 
-        public bool Equals(RoverState state)
+        public bool Equals(IRoverState state)
         {
-            if (direction != state.direction) return false;
-            if (x != state.x) return false;
-            if (y != state.y) return false;
+            var roverState = (RoverState)state;
+
+            if (direction != roverState.direction) return false;
+            if (x != roverState.x) return false;
+            if (y != roverState.y) return false;
             return true;
+        }
+
+        public IRoverState Clone()
+        {
+            return new RoverState(x, y, direction);
         }
     }
 }
