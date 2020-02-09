@@ -46,22 +46,22 @@ namespace Test
             _fixture.commander.CreateMap(MAX_X, MAX_Y);
 
             Random random = new Random();
-            int randomX = random.Next(0, MAX_X);
-            int randomY = random.Next(0, MAX_Y);
-            string randomDirection = DirectionEnumHelper.ToString(
-                DirectionEnumHelper.ToEnum(
-                    random.Next(0, DirectionEnumHelper.Count() - 1)
-                )
-            );
+            var randomX = random.Next(0, MAX_X);
+            var randomY = random.Next(0, MAX_Y);
+            var randomDirection = DirectionEnumHelper.ToEnum(random.Next(0, DirectionEnumHelper.Count() - 1));
 
             var roverId = _fixture.commander.CreateRover(randomX, randomY, randomDirection);
 
-            var rover = _fixture.commander.GetRover(roverId);
+            Assert.True(roverId.HasValue);
+
+            if (roverId.HasValue == false) return;
+
+            var rover = _fixture.commander.GetRover(roverId.Value);
             var roverState = rover.GetCurrentState();
 
             Assert.Equal(randomX, roverState.x);
             Assert.Equal(randomY, roverState.y);
-            Assert.Equal(randomDirection, DirectionEnumHelper.ToString(roverState.direction));
+            Assert.Equal(randomDirection, roverState.direction);
         }
 
         [Fact]
@@ -77,9 +77,13 @@ namespace Test
         public void CommandercCanMoveRover()
         {
             _fixture.commander.CreateMap(MAX_X, MAX_Y);
-            var roverId = _fixture.commander.CreateRover(1, 2, "N");
-            _fixture.commander.MoveRover(roverId, "LMLMLMLMM");
-            var output = _fixture.commander.Output(roverId);
+            var roverId = _fixture.commander.CreateRover(1, 2, Directions.North);
+
+            Assert.True(roverId.HasValue);
+            if (roverId.HasValue == false) return;
+
+            _fixture.commander.MoveRover(roverId.Value, "LMLMLMLMM");
+            var output = _fixture.commander.Output(roverId.Value);
             Assert.Equal("1 3 N", output);
         }
     }

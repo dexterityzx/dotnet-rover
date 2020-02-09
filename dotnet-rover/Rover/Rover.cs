@@ -12,15 +12,21 @@ namespace Rover
 
         private Map _map;
         private Stack<RoverState> _states;
+        private Stack<string> _errors;
 
         public Rover(Map map, RoverState state = null)
         {
             _map = map;
             _states = new Stack<RoverState>();
+            _errors = new Stack<string>();
 
             if (IsValidState(state))
             {
                 _states.Push(RoverState.Clone(state));
+            }
+            else
+            {
+                _states.Push(new RoverState());
             }
         }
 
@@ -49,6 +55,10 @@ namespace Rover
                 case Directions.West:
                     nextState.x--;
                     break;
+
+                default:
+                    _errors.Push($"Unknown direction : ${currentState.direction}");
+                    return false;
             }
             if (IsValidState(nextState) == false) return false;
 
@@ -95,9 +105,22 @@ namespace Rover
             return currentState;
         }
 
+        public string GetLastError()
+        {
+            string error = null;
+            _errors.TryPeek(out error);
+            return error;
+        }
+
         private bool IsValidState(RoverState state)
         {
-            return state != null && _map.IsInBoundary(state.x, state.y);
+            if (state == null) return false;
+            if (_map.IsInBoundary(state.x, state.y) == false)
+            {
+                _errors.Push($"({state.x},{state.y}) is out of map boundary.");
+                return false;
+            }
+            return true;
         }
     }
 }
