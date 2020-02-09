@@ -87,7 +87,7 @@ namespace Rover
                 return null;
             }
 
-            var direction = DirectionEnumHelper.FromString(position[2]);
+            var direction = DirectionEnumHelper.ToEnum(position[2]);
             if (!direction.HasValue)
             {
                 PrintError("Direction is not valid.");

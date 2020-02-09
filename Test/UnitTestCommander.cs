@@ -50,7 +50,7 @@ namespace Test
             var randomY = random.Next(0, MAX_Y);
             var randomDirection = DirectionEnumHelper.ToEnum(random.Next(0, DirectionEnumHelper.Count() - 1));
 
-            var roverId = _fixture.commander.CreateRover(randomX, randomY, randomDirection);
+            var roverId = _fixture.commander.CreateRover(randomX, randomY, randomDirection.Value);
 
             Assert.True(roverId.HasValue);
 

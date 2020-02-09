@@ -89,7 +89,7 @@ namespace Rover
             int currentDirection = DirectionEnumHelper.ToInt(nextState.direction);
             int directionLength = DirectionEnumHelper.Count();
             int nextDirection = (currentDirection + directionDelta + directionLength) % directionLength;
-            nextState.direction = DirectionEnumHelper.ToEnum(nextDirection);
+            nextState.direction = DirectionEnumHelper.ToEnum(nextDirection).Value;
 
             if (IsValidState(nextState) == false) return false;
 

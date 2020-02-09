@@ -12,28 +12,18 @@ namespace Rover
 
     public static class DirectionEnumHelper
     {
-        public const int NUM_OF_DIRECTIONS = 4;
-        public const int NORTH = 0;
-        public const int EAST = 1;
-        public const int SOUTH = 2;
-        public const int WEST = 3;
-
         public static int Count()
         {
             return Enum.GetNames(typeof(Directions)).Length;
         }
 
-        public static Directions ToEnum(int direction)
+        public static Directions? ToEnum(int direction)
         {
+            if (direction >= Count()) return null;
             return (Directions)Enum.ToObject(typeof(Directions), direction);
         }
 
-        public static int ToInt(Directions direction)
-        {
-            return (int)direction;
-        }
-
-        public static Directions? FromString(string str)
+        public static Directions? ToEnum(string str)
         {
             str = str.ToUpper();
             switch (str)
@@ -55,25 +45,14 @@ namespace Rover
             }
         }
 
+        public static int ToInt(Directions direction)
+        {
+            return (int)direction;
+        }
+
         public static string ToString(Directions direction)
         {
-            switch (direction)
-            {
-                case Directions.North:
-                    return "N";
-
-                case Directions.East:
-                    return "E";
-
-                case Directions.South:
-                    return "S";
-
-                case Directions.West:
-                    return "W";
-
-                default:
-                    return null;
-            }
+            return direction.ToString().Substring(0, 1);
         }
     }
 }
