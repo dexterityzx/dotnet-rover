@@ -7,14 +7,15 @@ namespace Test.Data
     {
         public TestRoverTurnData()
         {
-            Add(new RoverState(Directions.North, 1, 1), Rover.Rover.Turns.Left, new RoverState(Directions.West, 1, 1));
-            Add(new RoverState(Directions.East, 1, 1), Rover.Rover.Turns.Left, new RoverState(Directions.North, 1, 1));
-            Add(new RoverState(Directions.South, 1, 1), Rover.Rover.Turns.Left, new RoverState(Directions.East, 1, 1));
-            Add(new RoverState(Directions.West, 1, 1), Rover.Rover.Turns.Left, new RoverState(Directions.South, 1, 1));
-            Add(new RoverState(Directions.North, 1, 1), Rover.Rover.Turns.Right, new RoverState(Directions.East, 1, 1));
-            Add(new RoverState(Directions.East, 1, 1), Rover.Rover.Turns.Right, new RoverState(Directions.South, 1, 1));
-            Add(new RoverState(Directions.South, 1, 1), Rover.Rover.Turns.Right, new RoverState(Directions.West, 1, 1));
-            Add(new RoverState(Directions.West, 1, 1), Rover.Rover.Turns.Right, new RoverState(Directions.North, 1, 1));
+            Add(new RoverState(1, 1, Directions.North), Rover.Rover.Turns.Left, new RoverState(1, 1, Directions.West));
+            Add(new RoverState(1, 1, Directions.East), Rover.Rover.Turns.Left, new RoverState(1, 1, Directions.North));
+            Add(new RoverState(1, 1, Directions.South), Rover.Rover.Turns.Left, new RoverState(1, 1, Directions.East));
+            Add(new RoverState(1, 1, Directions.West), Rover.Rover.Turns.Left, new RoverState(1, 1, Directions.South));
+
+            Add(new RoverState(1, 1, Directions.North), Rover.Rover.Turns.Right, new RoverState(1, 1, Directions.East));
+            Add(new RoverState(1, 1, Directions.East), Rover.Rover.Turns.Right, new RoverState(1, 1, Directions.South));
+            Add(new RoverState(1, 1, Directions.South), Rover.Rover.Turns.Right, new RoverState(1, 1, Directions.West));
+            Add(new RoverState(1, 1, Directions.West), Rover.Rover.Turns.Right, new RoverState(1, 1, Directions.North));
         }
     }
 }

@@ -7,10 +7,10 @@ namespace Test.Data
     {
         public TestRoverMoveForwardData()
         {
-            Add(new RoverState(Directions.North, 1, 1), new RoverState(Directions.North, 1, 2));
-            Add(new RoverState(Directions.East, 1, 1), new RoverState(Directions.East, 2, 1));
-            Add(new RoverState(Directions.South, 1, 1), new RoverState(Directions.South, 1, 0));
-            Add(new RoverState(Directions.West, 1, 1), new RoverState(Directions.West, 0, 1));
+            Add(new RoverState(1, 1, Directions.North), new RoverState(1, 2, Directions.North));
+            Add(new RoverState(1, 1, Directions.East), new RoverState(2, 1, Directions.East));
+            Add(new RoverState(1, 1, Directions.South), new RoverState(1, 0, Directions.South));
+            Add(new RoverState(1, 1, Directions.West), new RoverState(0, 1, Directions.West));
         }
     }
 }

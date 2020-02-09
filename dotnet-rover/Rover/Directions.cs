@@ -18,7 +18,7 @@ namespace Rover
         public const int SOUTH = 2;
         public const int WEST = 3;
 
-        public static int Length()
+        public static int Count()
         {
             return Enum.GetNames(typeof(Directions)).Length;
         }
@@ -33,21 +33,43 @@ namespace Rover
             return (int)direction;
         }
 
+        public static Directions? FromString(string str)
+        {
+            str = str.ToUpper();
+            switch (str)
+            {
+                case "N":
+                    return Directions.North;
+
+                case "E":
+                    return Directions.East;
+
+                case "S":
+                    return Directions.South;
+
+                case "W":
+                    return Directions.West;
+
+                default:
+                    return null;
+            }
+        }
+
         public static string ToString(Directions direction)
         {
             switch (direction)
             {
                 case Directions.North:
-                    return "North";
+                    return "N";
 
                 case Directions.East:
-                    return "East";
+                    return "E";
 
                 case Directions.South:
-                    return "South";
+                    return "S";
 
                 case Directions.West:
-                    return "West";
+                    return "W";
 
                 default:
                     return null;

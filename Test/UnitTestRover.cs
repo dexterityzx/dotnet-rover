@@ -1,25 +1,41 @@
 using Rover;
+using System;
 using Test.Data;
 using Xunit;
 
 namespace Test
 {
-    public class UnitTestRover
+    public class RoverFixture : IDisposable
     {
-        private Rover.Rover _rover;
-        private Map _map;
+        public Map map { get; private set; }
 
-        public UnitTestRover()
+        public const int MAX_X = 15;
+        public const int MAX_Y = 10;
+
+        public RoverFixture()
         {
-            _map = new Map(10, 10);
-            _rover = new Rover.Rover(_map);
+            map = new Map(MAX_X, MAX_Y);
+        }
+
+        public void Dispose()
+        {
+        }
+    }
+
+    public class UnitTestRover : IClassFixture<RoverFixture>
+    {
+        private RoverFixture _fixture;
+
+        public UnitTestRover(RoverFixture fixture)
+        {
+            _fixture = fixture;
         }
 
         [Theory]
         [ClassData(typeof(TestRoverMoveForwardData))]
         public void RoverCanMoveForward(RoverState initialState, RoverState expectedState)
         {
-            var rover = new Rover.Rover(_map, initialState);
+            var rover = new Rover.Rover(_fixture.map, initialState);
             rover.MoveForward();
             Assert.True(rover.GetCurrentState().Equals(expectedState));
         }
@@ -28,7 +44,7 @@ namespace Test
         [ClassData(typeof(TestRoverTurnData))]
         public void RoverCanTrun(RoverState initialState, Rover.Rover.Turns turn, RoverState expectedState)
         {
-            var rover = new Rover.Rover(_map, initialState);
+            var rover = new Rover.Rover(_fixture.map, initialState);
             rover.Turn(turn);
             Assert.True(rover.GetCurrentState().Equals(expectedState));
         }

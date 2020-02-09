@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Rover
 {
@@ -11,15 +9,15 @@ namespace Rover
         public readonly int maxX;
         public readonly int maxY;
 
-        public Map(int maxX=0, int maxY=0)
+        public Map(int maxX = 0, int maxY = 0)
         {
-            this.maxX = maxX;
-            this.maxY = maxY;
+            this.maxX = Math.Max(maxX, 0);
+            this.maxY = Math.Max(maxY, 0);
         }
 
         public bool IsInBoundary(int x, int y)
         {
-            return minX <= x && x <= maxX 
+            return minX <= x && x <= maxX
                 && minY <= y && y <= maxY;
         }
     }

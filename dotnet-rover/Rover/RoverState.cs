@@ -10,16 +10,21 @@
         {
         }
 
-        public RoverState(Directions direciton, int x, int y)
+        public RoverState(int x, int y, Directions direciton)
         {
-            direction = direciton;
             this.x = x;
             this.y = y;
+            direction = direciton;
         }
 
         public static RoverState Clone(RoverState state)
         {
-            return new RoverState(state.direction, state.x, state.y);
+            return new RoverState(state.x, state.y, state.direction);
+        }
+
+        public string Output()
+        {
+            return $"{x} {y} {DirectionEnumHelper.ToString(direction)}";
         }
 
         public bool Equals(RoverState state)
