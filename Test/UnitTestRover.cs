@@ -49,9 +49,37 @@ namespace Test
             Assert.True(rover.GetCurrentState().Equals(expectedState));
         }
 
-        [Fact]
-        public void RoverCanReturnCurrentSatus()
+        [Theory]
+        [ClassData(typeof(TestRoverStateData))]
+        public void RoverCanReturnCurrentSatus(RoverState initialState)
         {
+            var rover = new Rover.Rover(_fixture.map, initialState);
+            Assert.True(initialState.Equals(rover.GetCurrentState()));
+        }
+
+        [Fact]
+        public void RoverCanTrackMovingOutOfBoundaryError()
+        {
+            var rover = new Rover.Rover(_fixture.map, new RoverState(1, 1, Directions.South));
+
+            rover.MoveForward();
+            Assert.Null(rover.GetLastError());
+
+            rover.MoveForward();
+            Assert.Equal($"(1,{1 - 2}) is out of map boundary.", rover.GetLastError());
+            //rover should stop moving when it's next step is out of boundary
+            rover.MoveForward();
+            Assert.Equal($"(1,{1 - 2}) is out of map boundary.", rover.GetLastError());
+        }
+
+        [Fact]
+        public void RoverCanTrackCreationOutOfBoundarysError()
+        {
+            var x = _fixture.map.maxX + 1;
+            var y = _fixture.map.maxY + 1;
+            var rover = new Rover.Rover(_fixture.map, new RoverState(x, y, Directions.South));
+
+            Assert.Equal($"({x},{y}) is out of map boundary.", rover.GetLastError());
         }
     }
 }

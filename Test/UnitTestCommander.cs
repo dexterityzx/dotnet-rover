@@ -74,7 +74,7 @@ namespace Test
         }
 
         [Fact]
-        public void CommandercCanMoveRover()
+        public void CommanderCanMoveRover()
         {
             _fixture.commander.CreateMap(MAX_X, MAX_Y);
             var roverId = _fixture.commander.CreateRover(1, 2, Directions.North);
