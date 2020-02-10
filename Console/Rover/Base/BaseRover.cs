@@ -1,9 +1,9 @@
 ﻿using Rover.Interface;
 using System.Collections.Generic;
 
-namespace Rover.Abstract
+namespace Rover.Base
 {
-    public abstract class AbstractRover<TRoverState> where TRoverState : IRoverState
+    public abstract class BaseRover<TRoverState> where TRoverState : IRoverState
     {
         public enum Turns
         {
@@ -17,7 +17,7 @@ namespace Rover.Abstract
 
         protected Stack<string> _errors;
 
-        public AbstractRover(Map map, TRoverState state)
+        public BaseRover(Map map, TRoverState state)
         {
             _map = map;
             _states = new Stack<TRoverState>();

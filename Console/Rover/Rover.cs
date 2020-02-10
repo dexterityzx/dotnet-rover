@@ -1,8 +1,8 @@
-﻿using Rover.Abstract;
+﻿using Rover.Base;
 
 namespace Rover
 {
-    public class Rover : AbstractRover<RoverState>
+    public class Rover : BaseRover<RoverState>
     {
         public Rover(Map map, RoverState state = null) : base(map, state)
         {
